@@ -11,13 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160129193349) do
+ActiveRecord::Schema.define(version: 20160129224923) do
+
+  create_table "subs", force: :cascade do |t|
+    t.string   "title",        null: false
+    t.text     "description",  null: false
+    t.integer  "moderator_id", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "subs", ["moderator_id"], name: "index_subs_on_moderator_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "user_name",       null: false
     t.string   "password_digest", null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "session_token",   null: false
   end
 
   add_index "users", ["password_digest"], name: "index_users_on_password_digest"

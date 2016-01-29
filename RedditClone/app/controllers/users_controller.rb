@@ -15,11 +15,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.find_by(user_name: user_params[:user_name])
+    @user = User.new(user_params)
     if @user.save
+      log_in!(@user)
       redirect_to user_url(@user)
     else
-      render :new 
+      render :new
     end
   end
 
