@@ -4,6 +4,7 @@ class Sub < ActiveRecord::Base
 
   belongs_to(
     :moderator,
+    foreign_key: :moderator_id,
     class_name: 'User'
   )
 

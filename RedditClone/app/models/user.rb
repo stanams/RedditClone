@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   has_many(
     :subs,
+    foreign_key: :moderator_id,
     class_name: 'Sub'
   )
 
