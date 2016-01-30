@@ -17,9 +17,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      flash[:notes] = ['Login Successful']
       log_in!(@user)
       redirect_to user_url(@user)
     else
+      flash[:notes] = ['Login Failed']
       render :new
     end
   end

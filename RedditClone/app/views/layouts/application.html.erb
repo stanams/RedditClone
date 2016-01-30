@@ -8,8 +8,14 @@
 </head>
 <body>
 
+<% if flash.now[:notes] %>
+  <% flash.now[:notes].each do |note| %>
+   <%= note %><br/>
+  <% end %>
+<% end %>
+
 <% if logged_in? %>
-  <%= button_to 'logout', new_session_url, method: :log_out! %>
+  <%= button_to 'logout', session_url, method: :delete %>
 <% end  %>
 
 <br>

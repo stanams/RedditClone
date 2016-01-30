@@ -1,7 +1,5 @@
 class SubsController < ApplicationController
 
-
-
   def index
     @subs = Sub.all
   end
@@ -12,7 +10,8 @@ class SubsController < ApplicationController
   end
 
   def show
-    @sub = Sub.find_by(params[:id])
+    @sub = Sub.find(params[:id])
+    # fail
     render :show
   end
 
@@ -20,6 +19,25 @@ class SubsController < ApplicationController
     if logged_in?
       @sub = current_user.subs.new(sub_params)
       if @sub.save
+        redirect_to subs_url
+      else
+        render :new
+      end
+    else
+      redirect_to new_session_url
+    end
+  end
+
+  def edit
+    @sub = Sub.find(params[:id])
+    render :edit
+  end
+
+  def update
+    if logged_in?
+
+      @sub = Sub.find(params[:id])
+      if @sub.update(sub_params)
         redirect_to subs_url
       else
         render :new

@@ -2,6 +2,12 @@
 
 <h1>Sign Up!</h1>
 
+<ul>
+<% @user.errors.full_messages.each do |err| %>
+  <li><%= err %></li>
+<% end %>
+</ul>
+
 <form action="/users" method="POST">
 
   <label for="user_user_name">Username</label>
